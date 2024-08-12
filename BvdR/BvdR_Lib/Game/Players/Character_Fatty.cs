@@ -1,17 +1,11 @@
-﻿using System;
-using System.Collections.Generic;
-using System.Linq;
-using System.Text;
-using System.Threading.Tasks;
-
-namespace BvdR_Lib.Game.Players
+﻿namespace BvdR_Lib.Game.Players
 {
     public class Character_Fatty : Player
     {
-        public override void EndScenario()
+        public override void EndScenario(GameController gameController)
         {
-            base.EndScenario();
-            DrawTwoCards();
+            base.EndScenario(gameController);
+            CardsInHand.AddRange(gameController.DrawCard(2));
         }
     }
 }

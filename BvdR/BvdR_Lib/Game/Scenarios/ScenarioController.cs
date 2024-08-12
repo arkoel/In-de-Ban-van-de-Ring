@@ -1,11 +1,4 @@
-﻿using BvdR_Lib.Game.Acts;
-using BvdR_Lib.Game.Acts.BagEnd;
-using BvdR_Lib.Game.Scenarios.Moria;
-using System;
-using System.Collections.Generic;
-using System.Linq;
-using System.Text;
-using System.Threading.Tasks;
+﻿using BvdR_Lib.Game.Scenarios.Moria;
 
 namespace BvdR_Lib.Game.Scenarios
 {
@@ -13,27 +6,22 @@ namespace BvdR_Lib.Game.Scenarios
     {
         public LinkedList<Scenario> AllActs = new LinkedList<Scenario>();
         public LinkedList<Scenario>.Enumerator CurrentAct;
-        
+
         public ScenarioController()
         {
-            AllActs.AddLast(new BagEndAct());
             AllActs.AddLast(new MoriaScenario());
             AllActs.AddLast(new MoriaScenario());
             CurrentAct = AllActs.GetEnumerator();
         }
 
-        public void MovePath(Scenario.PathType path) 
+        public void MovePath(Scenario.PathType path)
         {
-            
+
         }
 
-        public ScenarioPath[] GetCurrentPaths()
-        {
-            if (!(CurrentAct.Current is Scenario))
-                return [];
-            Scenario currentScenario = (Scenario)CurrentAct.Current;
-            
-        }
+        public Scenario.PathType[] GetCurrentPaths() =>
+            CurrentAct.Current.ScenarioPaths.Keys.ToArray();
+
 
         public void NextAct()
         {

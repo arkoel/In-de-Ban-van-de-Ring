@@ -1,17 +1,16 @@
-﻿using BvdR_Lib.Cards.ActivityCards;
-using System;
-using System.Collections.Generic;
-using System.Linq;
-using System.Text;
-using System.Threading.Tasks;
+﻿using BvdR_Lib.Cards;
+using BvdR_Lib.Cards.ActivityCards;
+using BvdR_Lib.Game.Scenarios;
 
 namespace BvdR_Lib.Game.Players
 {
-    public class Character_Frodo: Player
+    public class Character_Frodo : Player
     {
-        public override void PlayActivityCard(GameController gameController, BaseActivityCard card)
+        public override Scenario.PathType MapCardTypeToPathType(GameController gameController, BaseActivityCard.ActivityCardType type, BaseCard.CardColor color)
         {
-            base.PlayActivityCard(gameController, card);
+            if (color == BaseCard.CardColor.White)
+                return Scenario.PathType.AnyPath;
+            return base.MapCardTypeToPathType(gameController, type, color);
         }
     }
 }

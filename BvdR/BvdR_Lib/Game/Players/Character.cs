@@ -1,5 +1,6 @@
-﻿using BvdR_Lib.Cards.ActivityCards;
-using BvdR_Lib.Game.Acts;
+﻿using BvdR_Lib.Cards;
+using BvdR_Lib.Cards.ActivityCards;
+using BvdR_Lib.Game.Scenarios;
 using System.ComponentModel.DataAnnotations;
 
 namespace BvdR_Lib.Game.Players
@@ -8,7 +9,7 @@ namespace BvdR_Lib.Game.Players
     {
         [Range(0, 15)]
         public int CorruptionLevel { get; set; }
-
+        public List<BaseCard> CardsInHand { get; set; }
         protected bool _playedWhiteCard = false;
         protected bool _playedGrayCard = false;
         protected int _amountOfCardsPlayed = 0;
@@ -16,41 +17,63 @@ namespace BvdR_Lib.Game.Players
         protected int _heartLifeTokens = 0;
         protected int _ringLifeTokens = 0;
         protected int _sunLifeTokens = 0;
-        
-        private int _shields = 0;
 
-        public Player() 
+        private int _shields = 0;
+        public Player()
         {
             CorruptionLevel = 0;
+            CardsInHand = [];
         }
 
-        public virtual void DrawCards(int n) 
+        public async virtual Task<bool> PlayActivityCard(GameController gameController, BaseActivityCard card)
         {
-            //Draw n Cards
+            if (!CheckIfActivityCardCanBePlayed(card))
+                return false;
+            Scenario.PathType[] currentPaths = gameController.ActController.GetCurrentPaths();
+            for (int i = 0; i < card.Symbols.Length; i++)
+            {
+                if (card.Symbols[i] == BaseActivityCard.ActivityCardType.RollDie)
+                {
+                    RollDice();
+                    continue;
+                }
+                Scenario.PathType mappedPath = MapCardTypeToPathType(gameController, card.Symbols[i], card.Color);
+                if (mappedPath == Scenario.PathType.AnyPath)
+                    mappedPath = await gameController.UserInput.ChoosePath(currentPaths);
+                if (!currentPaths.Contains(mappedPath))
+                    return false;
+                gameController.ActController.MovePath(mappedPath);
+            }
+            return true;
         }
-        public virtual void PlayActivityCard(GameController gameController, BaseActivityCard card) 
+        public virtual Scenario.PathType MapCardTypeToPathType(GameController gameController, BaseActivityCard.ActivityCardType type, BaseCard.CardColor color)
         {
-            if(!CheckIfActivityCardCanBePlayed(card)) 
-                return;
-            MapCardTypeToPathType(card.)
-            gameController.ActController.GetCurrentPaths();
+            switch (type)
+            {
+                case BaseActivityCard.ActivityCardType.Hiding:
+                    return Scenario.PathType.Hiding;
+                case BaseActivityCard.ActivityCardType.Fighting:
+                    return Scenario.PathType.Fighting;
+                case BaseActivityCard.ActivityCardType.Friendship:
+                    return Scenario.PathType.Friendship;
+                case BaseActivityCard.ActivityCardType.Traveling:
+                    return Scenario.PathType.Traveling;
+                default:
+                    return Scenario.PathType.AnyPath;
+            }
         }
-        private void MapCardTypeToPathType(GameController gameController, BaseActivityCard.ActivityCardType type)
-        {
-
-        }
-        public virtual bool CheckIfActivityCardCanBePlayed(BaseActivityCard card) 
+        public virtual bool CheckIfActivityCardCanBePlayed(BaseActivityCard card)
         {
             if (_amountOfCardsPlayed == 2)
                 return false;
             if (card.Color == Cards.BaseCard.CardColor.White)
             {
-                if(_playedWhiteCard)
+                if (_playedWhiteCard)
                     return false;
                 _playedWhiteCard = true;
             }
             if (card.Color == Cards.BaseCard.CardColor.Gray)
-            { 
+            {
                 if (_playedGrayCard)
                     return false;
                 _playedGrayCard = true;
@@ -58,13 +81,13 @@ namespace BvdR_Lib.Game.Players
             return true;
         }
         public virtual void PlaySpecialCard() { }
-        public virtual void EndTurn() 
+        public virtual void EndTurn()
         {
             _playedGrayCard = false;
             _playedWhiteCard = false;
             _amountOfCardsPlayed = 0;
         }
-        public virtual void EndScenario() 
+        public virtual void EndScenario(GameController gameController)
         {
             //move over corruption trail for 3 - [each different lifetoken]
         }
@@ -72,10 +95,17 @@ namespace BvdR_Lib.Game.Players
         {
             //TODO
         }
+        public void Die(GameController gameController)
+        {
+            if (gameController.Ringbearer == this)
+                gameController.GameOver();
+            gameController.Players.Remove(this);
+            //TODO?
+        }
 
         public void AddShield(int n)
         {
-            if (n < 0 || n > 100) 
+            if (n < 0 || n > 100)
                 return;
             for (int i = 0; i < n; i++)
                 _shields++;
@@ -92,6 +122,5 @@ namespace BvdR_Lib.Game.Players
         {
             _ringLifeTokens++;
         }
-      
     }
 }

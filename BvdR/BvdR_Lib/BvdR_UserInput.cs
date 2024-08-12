@@ -1,16 +1,17 @@
-﻿using BvdR_Lib.Game.Acts;
-using System;
-using System.Collections.Generic;
-using System.Linq;
-using System.Text;
-using System.Threading.Tasks;
+﻿using BvdR_Lib.Cards;
+using BvdR_Lib.Game.Players;
+using BvdR_Lib.Game.Scenarios;
 
 namespace BvdR_Lib
 {
     public interface BvdR_UserInput
     {
         public Task<int> ChooseShield(int amountOfShields);
-        public Task<ScenarioPath> ChoosePath(ScenarioPath[] paths);
+        public Task<Scenario.PathType> ChoosePath(Scenario.PathType[] paths);
         public Task<bool> ChooseToRoll();
+        public Task<Player[]> DevideCardsBetweenPlayers(BaseCard[] cards);
+        public Task<bool> ChooseForAPlayerToDiscardTwoCards();
+        public Task<Player> ChoosePlayer(Player[] players);
+        public Task<BaseCard[]> ChooseCards(BaseCard[] cards, int amount);
     }
 }

@@ -1,10 +1,4 @@
 ﻿using BvdR_Lib.Game.Players;
-using BvdR_Lib.Game.Scenarios;
-using System;
-using System.Collections.Generic;
-using System.Linq;
-using System.Text;
-using System.Threading.Tasks;
 
 namespace BvdR_Lib.Game.Acts
 {
@@ -13,13 +7,13 @@ namespace BvdR_Lib.Game.Acts
         public TileType[] Tiles { get; set; }
         private int _pathIndex = 0;
         private bool _isMainPath;
-        public ScenarioPath(bool isMainPath) 
+        public ScenarioPath(bool isMainPath)
         {
             _isMainPath = isMainPath;
         }
         public void NextStep(Player currentPlayer, GameController gameController)
         {
-            if(_pathIndex==Tiles.Length-1)
+            if (_pathIndex == Tiles.Length - 1)
             {
                 return;
             }
@@ -27,7 +21,7 @@ namespace BvdR_Lib.Game.Acts
             switch (Tiles[_pathIndex])
             {
                 case TileType.Shield:
-                    currentPlayer.AddShield();
+                    currentPlayer.AddShield(1);
                     break;
                 case TileType.BigShield:
                     gameController.ChooseBigShield();
@@ -46,7 +40,7 @@ namespace BvdR_Lib.Game.Acts
                     break;
                 case TileType.DeCorrupt:
                     currentPlayer.CorruptionLevel--;
-                    if(currentPlayer.CorruptionLevel < 0)
+                    if (currentPlayer.CorruptionLevel < 0)
                         currentPlayer.CorruptionLevel = 0;
                     break;
                 case TileType.Book:
@@ -75,8 +69,8 @@ namespace BvdR_Lib.Game.Acts
                     break;
             }
 
-            if(_pathIndex==Tiles.Length-1 && _isMainPath)
-                gameController.ActController.NextAct(); 
+            if (_pathIndex == Tiles.Length - 1 && _isMainPath)
+                gameController.ActController.NextAct();
         }
 
         public enum TileType

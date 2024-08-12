@@ -1,19 +1,22 @@
 ﻿using BvdR_Lib.Game.Acts;
-using System;
-using System.Collections.Generic;
-using System.Linq;
-using System.Text;
-using System.Threading.Tasks;
+using BvdR_Lib.Game.Prologs;
+using BvdR_Lib.Game.Prologs.BagEnd;
 
 namespace BvdR_Lib.Game.Scenarios.Moria
 {
     public class MoriaScenario : Scenario
     {
         public MoriaScenario() : base(
+            new List<IPrologue>()
+            {
+                new BagEnd(),
+                //new Rivendell(),
+                //TODO
+            },
             new LinkedList<IScenarioEvent>() /*TODO create Events*/,
             new Dictionary<PathType, ScenarioPath>
             {
-                { PathType.Fighting, new ScenarioPath(true) {Tiles = 
+                { PathType.Fighting, new ScenarioPath(true) {Tiles =
                     [
                     ScenarioPath.TileType.None,
                     ScenarioPath.TileType.Shield,
@@ -28,7 +31,7 @@ namespace BvdR_Lib.Game.Scenarios.Moria
                     ScenarioPath.TileType.BigShield,
                     ]}
                 },
-                { PathType.Hiding, new ScenarioPath(false) {Tiles = 
+                { PathType.Hiding, new ScenarioPath(false) {Tiles =
                     [
                     ScenarioPath.TileType.None,
                     ScenarioPath.TileType.Book,
@@ -40,7 +43,7 @@ namespace BvdR_Lib.Game.Scenarios.Moria
                     ScenarioPath.TileType.Heart,
                     ]}
                 },
-                { PathType.Traveling, new ScenarioPath(false) {Tiles = 
+                { PathType.Traveling, new ScenarioPath(false) {Tiles =
                     [
                     ScenarioPath.TileType.Shield,
                     ScenarioPath.TileType.Shield,
