@@ -9,10 +9,10 @@ namespace BvdR_Lib.Cards.ActivityCards
 {
     public class HobitCard : BaseActivityCard
     {
-        ActivityCardType Symbol { get; set; }
+        public override ActivityCardType[] Symbols { get; }
         public HobitCard(CardColor color, ActivityCardType symbol) : base(color)
         {
-            Symbol = symbol;
+            Symbols = [symbol];
         }
 
     }

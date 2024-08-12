@@ -10,8 +10,8 @@ namespace BvdR_Lib.Cards.ActivityCards
 {
     public abstract class BaseActivityCard : BaseCard
     {
+        public abstract ActivityCardType[] Symbols { get; }
         public BaseActivityCard(CardColor color) : base(color) { }
-
         public enum ActivityCardType
         {
             Friendship,

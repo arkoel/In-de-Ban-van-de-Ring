@@ -9,7 +9,8 @@ namespace BvdR_Lib
 {
     public interface BvdR_UserInput
     {
-        public int ChooseShield(int amountOfShields);
-        public ScenarioPath ChoosePath(ScenarioPath[] paths);
+        public Task<int> ChooseShield(int amountOfShields);
+        public Task<ScenarioPath> ChoosePath(ScenarioPath[] paths);
+        public Task<bool> ChooseToRoll();
     }
 }

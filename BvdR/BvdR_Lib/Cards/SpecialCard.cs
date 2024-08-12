@@ -12,7 +12,10 @@ namespace BvdR_Lib.Cards
         public SpecialCard() : base(CardColor.None) 
         {
         }
-        public abstract void Play(GameController gameController);
+        public void Play(GameController gameController)
+        {
+
+        }
 
     }
 }

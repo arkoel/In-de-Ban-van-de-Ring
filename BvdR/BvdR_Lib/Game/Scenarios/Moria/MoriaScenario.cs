@@ -9,9 +9,8 @@ namespace BvdR_Lib.Game.Scenarios.Moria
 {
     public class MoriaScenario : Scenario
     {
-        public override bool IsScenario() => true;
         public MoriaScenario() : base(
-            new LinkedList<ScenarioEvent>() /*TODO create Events*/,
+            new LinkedList<IScenarioEvent>() /*TODO create Events*/,
             new Dictionary<PathType, ScenarioPath>
             {
                 { PathType.Fighting, new ScenarioPath(true) {Tiles = 

@@ -6,8 +6,8 @@ using System.Threading.Tasks;
 
 namespace BvdR_Lib.Game.Scenarios
 {
-    public class ScenarioEvent
+    public interface IScenarioEvent
     {
-
+        public void Start(GameController gameController);
     }
 }

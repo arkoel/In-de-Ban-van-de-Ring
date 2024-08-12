@@ -1,13 +1,6 @@
 ﻿using BvdR_Lib.Cards.ActivityCards;
-using System;
-using System.Collections.Generic;
+using BvdR_Lib.Game.Acts;
 using System.ComponentModel.DataAnnotations;
-using System.IO.Pipes;
-using System.Linq;
-using System.Numerics;
-using System.Runtime.CompilerServices;
-using System.Text;
-using System.Threading.Tasks;
 
 namespace BvdR_Lib.Game.Players
 {
@@ -31,12 +24,20 @@ namespace BvdR_Lib.Game.Players
             CorruptionLevel = 0;
         }
 
-        public virtual void DrawTwoCards() { }
+        public virtual void DrawCards(int n) 
+        {
+            //Draw n Cards
+        }
         public virtual void PlayActivityCard(GameController gameController, BaseActivityCard card) 
         {
             if(!CheckIfActivityCardCanBePlayed(card)) 
                 return;
-            gameController.ActController.CurrentAct.Current.
+            MapCardTypeToPathType(card.)
+            gameController.ActController.GetCurrentPaths();
+        }
+        private void MapCardTypeToPathType(GameController gameController, BaseActivityCard.ActivityCardType type)
+        {
+
         }
         public virtual bool CheckIfActivityCardCanBePlayed(BaseActivityCard card) 
         {
@@ -72,9 +73,12 @@ namespace BvdR_Lib.Game.Players
             //TODO
         }
 
-        public void AddShield()
+        public void AddShield(int n)
         {
-            _shields++;
+            if (n < 0 || n > 100) 
+                return;
+            for (int i = 0; i < n; i++)
+                _shields++;
         }
         public void AddHeart()
         {

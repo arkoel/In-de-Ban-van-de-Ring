@@ -9,12 +9,12 @@ using System.Threading.Tasks;
 
 namespace BvdR_Lib.Game.Scenarios
 {
-    public class ActController
+    public class ScenarioController
     {
-        public LinkedList<Act> AllActs = new LinkedList<Act>();
-        public LinkedList<Act>.Enumerator CurrentAct;
+        public LinkedList<Scenario> AllActs = new LinkedList<Scenario>();
+        public LinkedList<Scenario>.Enumerator CurrentAct;
         
-        public ActController()
+        public ScenarioController()
         {
             AllActs.AddLast(new BagEndAct());
             AllActs.AddLast(new MoriaScenario());
@@ -32,7 +32,7 @@ namespace BvdR_Lib.Game.Scenarios
             if (!(CurrentAct.Current is Scenario))
                 return [];
             Scenario currentScenario = (Scenario)CurrentAct.Current;
-
+            
         }
 
         public void NextAct()

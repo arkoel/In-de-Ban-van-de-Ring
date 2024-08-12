@@ -8,10 +8,11 @@ namespace BvdR_Lib.Cards.ActivityCards.SpecialActivityCards
 {
     public class SpecialActivityCard : BaseActivityCard
     {
-        List<ActivityCardType> Symbols { get; set; }
-        public SpecialActivityCard(CardColor color, List<ActivityCardType> symbols) : base(color)
+        public override ActivityCardType[] Symbols { get; }
+        public SpecialActivityCard(CardColor color, ActivityCardType[] symbols) : base(color)
         {
             Symbols = symbols;
         }
+        
     }
 }
