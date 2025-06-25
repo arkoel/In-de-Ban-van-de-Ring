@@ -1,0 +1,15 @@
+C:\Users\arjen\source\repos\In de Ban van de Ring\BvdR_ConsoleInterface\bin\Debug\net8.0\BvdR_ConsoleInterface.exe
+C:\Users\arjen\source\repos\In de Ban van de Ring\BvdR_ConsoleInterface\bin\Debug\net8.0\BvdR_ConsoleInterface.deps.json
+C:\Users\arjen\source\repos\In de Ban van de Ring\BvdR_ConsoleInterface\bin\Debug\net8.0\BvdR_ConsoleInterface.runtimeconfig.json
+C:\Users\arjen\source\repos\In de Ban van de Ring\BvdR_ConsoleInterface\bin\Debug\net8.0\BvdR_ConsoleInterface.dll
+C:\Users\arjen\source\repos\In de Ban van de Ring\BvdR_ConsoleInterface\bin\Debug\net8.0\BvdR_ConsoleInterface.pdb
+C:\Users\arjen\source\repos\In de Ban van de Ring\BvdR_ConsoleInterface\obj\Debug\net8.0\BvdR_ConsoleInterface.GeneratedMSBuildEditorConfig.editorconfig
+C:\Users\arjen\source\repos\In de Ban van de Ring\BvdR_ConsoleInterface\obj\Debug\net8.0\BvdR_ConsoleInterface.AssemblyInfoInputs.cache
+C:\Users\arjen\source\repos\In de Ban van de Ring\BvdR_ConsoleInterface\obj\Debug\net8.0\BvdR_ConsoleInterface.AssemblyInfo.cs
+C:\Users\arjen\source\repos\In de Ban van de Ring\BvdR_ConsoleInterface\obj\Debug\net8.0\BvdR_ConsoleInterface.csproj.CoreCompileInputs.cache
+C:\Users\arjen\source\repos\In de Ban van de Ring\BvdR_ConsoleInterface\obj\Debug\net8.0\BvdR_ConsoleInterface.sourcelink.json
+C:\Users\arjen\source\repos\In de Ban van de Ring\BvdR_ConsoleInterface\obj\Debug\net8.0\BvdR_ConsoleInterface.dll
+C:\Users\arjen\source\repos\In de Ban van de Ring\BvdR_ConsoleInterface\obj\Debug\net8.0\refint\BvdR_ConsoleInterface.dll
+C:\Users\arjen\source\repos\In de Ban van de Ring\BvdR_ConsoleInterface\obj\Debug\net8.0\BvdR_ConsoleInterface.pdb
+C:\Users\arjen\source\repos\In de Ban van de Ring\BvdR_ConsoleInterface\obj\Debug\net8.0\BvdR_ConsoleInterface.genruntimeconfig.cache
+C:\Users\arjen\source\repos\In de Ban van de Ring\BvdR_ConsoleInterface\obj\Debug\net8.0\ref\BvdR_ConsoleInterface.dll
