@@ -1,4 +1,5 @@
-﻿using BvdR_Lib.Cards.ActivityCards;
+﻿using BvdR_Lib.Cards;
+using BvdR_Lib.Cards.ActivityCards;
 using BvdR_Lib.Game.Players;
 using BvdR_Lib.Game.Scenarios;
 using System.ComponentModel.DataAnnotations;
@@ -110,6 +111,11 @@ namespace BvdR_Lib.Game
                 topCards[i] = _hobitDeck.Pop();
             }
             return topCards;
+        }
+
+        public void PlayCard<T>(T card) where T : BaseCard
+        {
+
         }
 
         public Player GetCurrentPlayer()

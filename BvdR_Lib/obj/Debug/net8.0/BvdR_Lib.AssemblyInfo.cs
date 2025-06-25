@@ -14,7 +14,7 @@ using System.Reflection;
 [assembly: System.Reflection.AssemblyCompanyAttribute("BvdR_Lib")]
 [assembly: System.Reflection.AssemblyConfigurationAttribute("Debug")]
 [assembly: System.Reflection.AssemblyFileVersionAttribute("1.0.0.0")]
-[assembly: System.Reflection.AssemblyInformationalVersionAttribute("1.0.0+1eb909cfb48dfe5ca37a8db82d655422faccbd89")]
+[assembly: System.Reflection.AssemblyInformationalVersionAttribute("1.0.0+c579aecdeca5c68390c7a59b633f7c6ddab5bcdd")]
 [assembly: System.Reflection.AssemblyProductAttribute("BvdR_Lib")]
 [assembly: System.Reflection.AssemblyTitleAttribute("BvdR_Lib")]
 [assembly: System.Reflection.AssemblyVersionAttribute("1.0.0.0")]
