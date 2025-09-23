@@ -13,6 +13,7 @@ namespace BvdR_Lib.Cards.ActivityCards
         public HobitCard(CardColor color, ActivityCardType symbol) : base(color)
         {
             Symbols = [symbol];
+
         }
 
     }

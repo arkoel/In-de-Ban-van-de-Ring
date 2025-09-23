@@ -11,8 +11,9 @@ namespace BvdR_Lib.Game.Acts
         {
             _isMainPath = isMainPath;
         }
-        public void NextStep(Player currentPlayer, GameController gameController)
+        public void NextStep(GameController gameController)
         {
+            Player currentPlayer = gameController.GetCurrentPlayer();
             if (_pathIndex == Tiles.Length - 1)
             {
                 return;

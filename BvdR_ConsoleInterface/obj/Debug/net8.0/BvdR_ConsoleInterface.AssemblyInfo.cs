@@ -14,7 +14,7 @@ using System.Reflection;
 [assembly: System.Reflection.AssemblyCompanyAttribute("BvdR_ConsoleInterface")]
 [assembly: System.Reflection.AssemblyConfigurationAttribute("Debug")]
 [assembly: System.Reflection.AssemblyFileVersionAttribute("1.0.0.0")]
-[assembly: System.Reflection.AssemblyInformationalVersionAttribute("1.0.0+c579aecdeca5c68390c7a59b633f7c6ddab5bcdd")]
+[assembly: System.Reflection.AssemblyInformationalVersionAttribute("1.0.0+924b7bd9f505a75b04755cc945e2288d0c3eb49c")]
 [assembly: System.Reflection.AssemblyProductAttribute("BvdR_ConsoleInterface")]
 [assembly: System.Reflection.AssemblyTitleAttribute("BvdR_ConsoleInterface")]
 [assembly: System.Reflection.AssemblyVersionAttribute("1.0.0.0")]

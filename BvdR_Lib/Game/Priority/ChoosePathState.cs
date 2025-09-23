@@ -6,8 +6,7 @@ using System.Threading.Tasks;
 
 namespace BvdR_Lib.Game.Priority
 {
-    public interface ISelectingPriority : IPriority
+    public class ChoosePathState : BaseState
     {
-        //Playing cards, selecting cards
     }
 }

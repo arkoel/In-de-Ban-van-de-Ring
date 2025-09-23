@@ -33,6 +33,7 @@ namespace BvdR_Lib.Game.Prologs.BagEnd
         {
             public async void Start(GameController gameController)
             {
+
                 if (!await gameController.UserInput.ChooseToRoll())
                     return;
                 gameController.Ringbearer.RollDice();

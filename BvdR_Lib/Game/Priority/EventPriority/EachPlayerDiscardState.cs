@@ -4,9 +4,9 @@ using System.Linq;
 using System.Text;
 using System.Threading.Tasks;
 
-namespace BvdR_Lib.Game.Priority
+namespace BvdR_Lib.Game.Priority.EventPriority
 {
-    internal interface IPriority
+    public class EachPlayerDiscardState : BaseDiscardState
     {
     }
 }

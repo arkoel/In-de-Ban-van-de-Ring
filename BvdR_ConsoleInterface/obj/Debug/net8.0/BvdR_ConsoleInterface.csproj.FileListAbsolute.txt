@@ -13,3 +13,7 @@ C:\Users\arjen\source\repos\In de Ban van de Ring\BvdR_ConsoleInterface\obj\Debu
 C:\Users\arjen\source\repos\In de Ban van de Ring\BvdR_ConsoleInterface\obj\Debug\net8.0\BvdR_ConsoleInterface.pdb
 C:\Users\arjen\source\repos\In de Ban van de Ring\BvdR_ConsoleInterface\obj\Debug\net8.0\BvdR_ConsoleInterface.genruntimeconfig.cache
 C:\Users\arjen\source\repos\In de Ban van de Ring\BvdR_ConsoleInterface\obj\Debug\net8.0\ref\BvdR_ConsoleInterface.dll
+C:\Users\arjen\source\repos\In de Ban van de Ring\BvdR_ConsoleInterface\bin\Debug\net8.0\BvdR_Lib.dll
+C:\Users\arjen\source\repos\In de Ban van de Ring\BvdR_ConsoleInterface\bin\Debug\net8.0\BvdR_Lib.pdb
+C:\Users\arjen\source\repos\In de Ban van de Ring\BvdR_ConsoleInterface\obj\Debug\net8.0\BvdR_ConsoleInterface.csproj.AssemblyReference.cache
+C:\Users\arjen\source\repos\In de Ban van de Ring\BvdR_ConsoleInterface\obj\Debug\net8.0\BvdR_Con.3F884ED3.Up2Date

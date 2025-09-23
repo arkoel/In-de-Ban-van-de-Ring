@@ -20,7 +20,10 @@ namespace BvdR_Lib.Game.Scenarios
             ScenarioPaths = paths;
         }
 
-
+        public void TriggerEvent(GameController egine)
+        {
+            CurrentEvent.Current.Start(egine);
+        }
         public enum PathType
         {
             Friendship,

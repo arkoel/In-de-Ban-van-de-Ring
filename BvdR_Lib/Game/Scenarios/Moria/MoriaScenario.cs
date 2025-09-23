@@ -1,4 +1,5 @@
 ﻿using BvdR_Lib.Game.Acts;
+using BvdR_Lib.Game.Priority.EventPriority;
 using BvdR_Lib.Game.Prologs;
 using BvdR_Lib.Game.Prologs.BagEnd;
 
@@ -13,7 +14,11 @@ namespace BvdR_Lib.Game.Scenarios.Moria
                 //new Rivendell(),
                 //TODO
             },
-            new LinkedList<IScenarioEvent>() /*TODO create Events*/,
+            new LinkedList<IScenarioEvent>() 
+            {
+                /*TODO create Events*/
+
+            },
             new Dictionary<PathType, ScenarioPath>
             {
                 { PathType.Fighting, new ScenarioPath(true) {Tiles =
@@ -56,6 +61,15 @@ namespace BvdR_Lib.Game.Scenarios.Moria
                 }
             })
         {
+        }
+
+
+        public class MoriaEvent_1 : IScenarioEvent
+        {
+            public void Start(GameController gameController)
+            {
+                gameController.ChangeState(new GroupDiscardState());
+            }
         }
     }
 }

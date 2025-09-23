@@ -1,9 +1,11 @@
 ﻿using BvdR_Lib.Cards;
 using BvdR_Lib.Cards.ActivityCards;
 using BvdR_Lib.Game.Players;
+using BvdR_Lib.Game.Priority;
 using BvdR_Lib.Game.Scenarios;
 using System.ComponentModel.DataAnnotations;
 using System.Diagnostics;
+using System.Security.Principal;
 
 namespace BvdR_Lib.Game
 {
@@ -17,9 +19,11 @@ namespace BvdR_Lib.Game
         [Range(0, 15)]
         public int PositionSauron { get; private set; }
         public List<int> BigShields { get; private set; }
+
         #endregion
 
         #region private fields
+        private BaseState _state;
         private LinkedList<Player>.Enumerator _playerEnumerator;
         private Random _rng;
         private Stack<HobitCard> _hobitDeck;
@@ -113,17 +117,13 @@ namespace BvdR_Lib.Game
             return topCards;
         }
 
-        public void PlayCard<T>(T card) where T : BaseCard
-        {
-
-        }
 
         public Player GetCurrentPlayer()
         {
             return _playerEnumerator.Current;
         }
 
-        public void NextTurn()
+        internal void NextTurn()
         {
             //other things
             if (_playerEnumerator.MoveNext())
@@ -133,6 +133,7 @@ namespace BvdR_Lib.Game
 
         public async void ChooseBigShield()
         {
+            //mabye depricated
             int chosenShieldIndex = await UserInput.ChooseShield(BigShields.Count);
             if (chosenShieldIndex < 0 || chosenShieldIndex >= BigShields.Count)
                 return;
@@ -141,6 +142,61 @@ namespace BvdR_Lib.Game
             BigShields.RemoveAt(chosenShieldIndex);
             GetCurrentPlayer().AddShield(amountOfShields);
         }
+
+        public void PlaySpecialCard(SpecialCard card) 
+        {
+            
+        }
+
+        internal void PlayActivityCard<T>(T card) where T : BaseActivityCard
+        {
+
+        }
+
+        internal async Task<BaseState> ChangeState(BaseState state) 
+        {
+            if (_state == null)
+                throw new ArgumentNullException(nameof(state));
+            _state = state;
+            while (!_state.ActionTaken) 
+            {
+                Thread.Sleep(100);
+            }
+            return state;
+        }
+
+        internal async void MovePath(Scenario.PathType targetPath)
+        {
+            if (ActController.GetCurrentPaths().Any(path => path == targetPath))
+                ActController.MovePath(targetPath,this);
+            else
+                await ChangeState(new ChoosePathState());
+        }
+  
+
+        internal Scenario.PathType MapCardTypeToPathType(BaseActivityCard.ActivityCardType type)
+        {
+            return type switch
+            {
+                BaseActivityCard.ActivityCardType.Hiding => Scenario.PathType.Hiding,
+                BaseActivityCard.ActivityCardType.Fighting => Scenario.PathType.Fighting,
+                BaseActivityCard.ActivityCardType.Friendship => Scenario.PathType.Friendship,
+                BaseActivityCard.ActivityCardType.Traveling => Scenario.PathType.Traveling,
+                _ => Scenario.PathType.AnyPath,
+            };
+        }
+        public enum States
+        {
+            StartTurn,
+            RevealEvents,
+            EventTrigger,
+            ChoosePath,
+            TurnAction,
+            EndTurn
+        }
+
+
+
 
         public void GameOver()
         {

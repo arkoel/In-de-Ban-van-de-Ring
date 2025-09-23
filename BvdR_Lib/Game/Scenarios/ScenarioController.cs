@@ -14,9 +14,10 @@ namespace BvdR_Lib.Game.Scenarios
             CurrentAct = AllActs.GetEnumerator();
         }
 
-        public void MovePath(Scenario.PathType path)
+        public void MovePath(Scenario.PathType path, GameController gameController)
         {
-
+            Acts.ScenarioPath targetPath = CurrentAct.Current.ScenarioPaths[path];
+            targetPath.NextStep(gameController);
         }
 
         public Scenario.PathType[] GetCurrentPaths() =>

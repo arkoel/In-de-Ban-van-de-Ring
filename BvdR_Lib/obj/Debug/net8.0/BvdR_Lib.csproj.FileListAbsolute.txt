@@ -1,0 +1,12 @@
+C:\Users\arjen\source\repos\In de Ban van de Ring\BvdR_Lib\obj\Debug\net8.0\BvdR_Lib.GeneratedMSBuildEditorConfig.editorconfig
+C:\Users\arjen\source\repos\In de Ban van de Ring\BvdR_Lib\obj\Debug\net8.0\BvdR_Lib.AssemblyInfoInputs.cache
+C:\Users\arjen\source\repos\In de Ban van de Ring\BvdR_Lib\obj\Debug\net8.0\BvdR_Lib.AssemblyInfo.cs
+C:\Users\arjen\source\repos\In de Ban van de Ring\BvdR_Lib\obj\Debug\net8.0\BvdR_Lib.csproj.CoreCompileInputs.cache
+C:\Users\arjen\source\repos\In de Ban van de Ring\BvdR_Lib\obj\Debug\net8.0\BvdR_Lib.sourcelink.json
+C:\Users\arjen\source\repos\In de Ban van de Ring\BvdR_Lib\bin\Debug\net8.0\BvdR_Lib.deps.json
+C:\Users\arjen\source\repos\In de Ban van de Ring\BvdR_Lib\bin\Debug\net8.0\BvdR_Lib.dll
+C:\Users\arjen\source\repos\In de Ban van de Ring\BvdR_Lib\bin\Debug\net8.0\BvdR_Lib.pdb
+C:\Users\arjen\source\repos\In de Ban van de Ring\BvdR_Lib\obj\Debug\net8.0\BvdR_Lib.dll
+C:\Users\arjen\source\repos\In de Ban van de Ring\BvdR_Lib\obj\Debug\net8.0\refint\BvdR_Lib.dll
+C:\Users\arjen\source\repos\In de Ban van de Ring\BvdR_Lib\obj\Debug\net8.0\BvdR_Lib.pdb
+C:\Users\arjen\source\repos\In de Ban van de Ring\BvdR_Lib\obj\Debug\net8.0\ref\BvdR_Lib.dll

@@ -6,8 +6,8 @@ using System.Threading.Tasks;
 
 namespace BvdR_Lib.Game.Priority
 {
-    public interface INoSelectingPriority : IPriority
+    public abstract class BaseState
     {
-        //dice throws, events, etc.
+        public bool ActionTaken = false;
     }
 }

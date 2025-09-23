@@ -38,29 +38,13 @@ namespace BvdR_Lib.Game.Players
                     continue;
                 }
                 Scenario.PathType mappedPath = MapCardTypeToPathType(gameController, card.Symbols[i], card.Color);
-                if (mappedPath == Scenario.PathType.AnyPath)
-                    mappedPath = await gameController.UserInput.ChoosePath(currentPaths);
-                if (!currentPaths.Contains(mappedPath))
-                    return false;
-                gameController.ActController.MovePath(mappedPath);
+                gameController.MovePath(mappedPath);
             }
             return true;
         }
         public virtual Scenario.PathType MapCardTypeToPathType(GameController gameController, BaseActivityCard.ActivityCardType type, BaseCard.CardColor color)
         {
-            switch (type)
-            {
-                case BaseActivityCard.ActivityCardType.Hiding:
-                    return Scenario.PathType.Hiding;
-                case BaseActivityCard.ActivityCardType.Fighting:
-                    return Scenario.PathType.Fighting;
-                case BaseActivityCard.ActivityCardType.Friendship:
-                    return Scenario.PathType.Friendship;
-                case BaseActivityCard.ActivityCardType.Traveling:
-                    return Scenario.PathType.Traveling;
-                default:
-                    return Scenario.PathType.AnyPath;
-            }
+            return gameController.MapCardTypeToPathType(type);
         }
         public virtual bool CheckIfActivityCardCanBePlayed(BaseActivityCard card)
         {
