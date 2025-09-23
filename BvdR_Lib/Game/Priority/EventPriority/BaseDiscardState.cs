@@ -2,28 +2,34 @@
 using System.Collections.Generic;
 using System.Linq;
 using System.Net.NetworkInformation;
+using System.Runtime.InteropServices;
 using System.Text;
 using System.Threading.Tasks;
 
 namespace BvdR_Lib.Game.Priority.EventPriority
 {
     public class BaseDiscardState : BaseState
-    {        
-        public BaseDiscardState() 
+    {
+        private GameController engine;
+        private Func<GameController, bool> consequence;
+        public BaseDiscardState(GameController _engine, Func<GameController, bool> _consequence) 
         {
-        
+            consequence = _consequence;
+            engine = _engine;
         }
-        public void Discard()
+        private protected bool Discard()
         {
             if (ActionTaken)
-                return;
+                return false;
             ActionTaken = true;
+            return true;
         }
-        public void Consequence()
+        private protected void Consequence()
         {
             if(ActionTaken)
                 return;
             ActionTaken = true;
+            consequence.Invoke(engine);
         }
     }
 }

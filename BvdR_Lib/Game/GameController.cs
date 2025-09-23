@@ -185,6 +185,8 @@ namespace BvdR_Lib.Game
                 _ => Scenario.PathType.AnyPath,
             };
         }
+
+        //probs deprecated, just a note rn
         public enum States
         {
             StartTurn,

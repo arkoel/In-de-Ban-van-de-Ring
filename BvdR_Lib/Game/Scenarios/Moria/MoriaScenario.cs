@@ -2,7 +2,8 @@
 using BvdR_Lib.Game.Priority.EventPriority;
 using BvdR_Lib.Game.Prologs;
 using BvdR_Lib.Game.Prologs.BagEnd;
-
+using BvdR_Lib.Cards.ActivityCards;
+using System.Text;
 namespace BvdR_Lib.Game.Scenarios.Moria
 {
     public class MoriaScenario : Scenario
@@ -66,9 +67,30 @@ namespace BvdR_Lib.Game.Scenarios.Moria
 
         public class MoriaEvent_1 : IScenarioEvent
         {
-            public void Start(GameController gameController)
+            public async void Start(GameController gameController)
             {
-                gameController.ChangeState(new GroupDiscardState());
+                await gameController.ChangeState(new GroupDiscardState(
+                    gameController,
+                    [BaseActivityCard.ActivityCardType.Friendship, BaseActivityCard.ActivityCardType.Joker],
+                    engine => {
+                        engine.MoveSauron(1);
+                        return true;
+                    }
+                ));
+            }
+        }
+        public class MoriaEvent_2 : IScenarioEvent
+        {
+            public async void Start(GameController gameController)
+            {
+                await gameController.ChangeState(new EachPlayerDiscardState(
+                    gameController,
+                    [BaseActivityCard.ActivityCardType.Hiding],
+                    engine => {
+                        
+                        return true;
+                    }
+                ));
             }
         }
     }
