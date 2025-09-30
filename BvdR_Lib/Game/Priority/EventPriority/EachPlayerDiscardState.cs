@@ -12,37 +12,62 @@ namespace BvdR_Lib.Game.Priority.EventPriority
     {
         private List<BaseActivityCard.ActivityCardType> toDiscard;
         private GameController engine;
-        public EachPlayerDiscardState(GameController _engine, List<BaseActivityCard.ActivityCardType> _toDiscard, Func<GameController, bool> consequence)
-            : base(_engine, consequence)
+        private List<Player> playersDiscarded;
+        private Func<GameController,Player, bool> consequence;
+
+        public EachPlayerDiscardState(GameController _engine, List<BaseActivityCard.ActivityCardType> _toDiscard, Func<GameController,Player, bool> _consequence)
+            : base(_engine)
         {
             toDiscard = _toDiscard;
             engine = _engine;
+            consequence = _consequence;
         }
 
-        public bool Discard(Dictionary<BaseActivityCard, Player> cardsToDiscard)
+        public bool Discard(List<BaseActivityCard> cardsToDiscard, Player player)
         {
-            if (Discard()) return false;
+            if(ActionTaken)
+                return false;
+            if (cardsToDiscard.Count != cardsToDiscard.Distinct().Count())
+                return false;
+            if(playersDiscarded.Contains(player)) 
+                return false;
+
             foreach (var card in cardsToDiscard)
             {
-                if (!card.Value.CardsInHand.Any(handCard => handCard == card.Key))
-                    return false;
-                if (cardsToDiscard.Except([card]).Any(pair=>pair.Value==card.Value))
+                if (!player.CardsInHand.Any(handCard => handCard == card))
                     return false;
             }
-            if(cardsToDiscard.Select(card => card.Value).Except(engine.Players).Count()>0)
-                return false;
+            var tempToDiscard = toDiscard;
             foreach (var card in cardsToDiscard)
             {
-                if (!toDiscard.Any(symbol => card.Key.Symbols.Contains(symbol)))
+                if (!tempToDiscard.Any(symbol => card.Symbols.Contains(symbol)))
                     return false;
-                foreach (var symbol in card.Key.Symbols)
-                    if (toDiscard.Contains(symbol))
-                        toDiscard.Remove(symbol);
-                card.Value.CardsInHand.Remove(card.Key);
+                foreach (var symbol in card.Symbols)
+                    if (tempToDiscard.Contains(symbol))
+                        tempToDiscard.Remove(symbol);
+                player.CardsInHand.Remove(card);
             }
             if (toDiscard.Count > 0)
                 return false;
+            playersDiscarded.Add(player);
+            if(playersDiscarded.Count == engine.Players.Count)
+                ActionTaken = true;
             return true;
         }
+
+        public bool Consequence(Player player)
+        {
+            if (ActionTaken)
+                return false;
+            if(playersDiscarded.Contains(player))
+                return false;
+
+            playersDiscarded.Add(player);
+            consequence.Invoke(engine, player);
+            if (playersDiscarded.Count == engine.Players.Count)
+                ActionTaken = true;
+            return true;
+        }
+
     }
 }

@@ -13,10 +13,12 @@ namespace BvdR_Lib.Game.Priority.EventPriority
     public class OnePlayerDiscardState : BaseDiscardState
     { 
         private List<BaseActivityCard.ActivityCardType> toDiscard;
-        public OnePlayerDiscardState(GameController engine, List<BaseActivityCard.ActivityCardType> _toDiscard, Func<GameController, bool> consequence)
-            : base(engine, consequence)
+        protected Func<GameController, bool> consequence;
+        public OnePlayerDiscardState(GameController engine, List<BaseActivityCard.ActivityCardType> _toDiscard, Func<GameController, bool> _consequence)
+            : base(engine)
         {
             toDiscard = _toDiscard;
+            consequence = _consequence;
         }
 
         public bool Discard(List<BaseActivityCard> cardsToDiscard, Player player)
@@ -38,6 +40,14 @@ namespace BvdR_Lib.Game.Priority.EventPriority
             }
             if (toDiscard.Count > 0)
                 return false;
+            return true;
+        }
+        public bool Consequence()
+        {
+            if (ActionTaken)
+                return false;
+            ActionTaken = true;
+            consequence.Invoke(engine);
             return true;
         }
     }

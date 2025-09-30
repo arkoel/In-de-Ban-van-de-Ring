@@ -72,7 +72,7 @@ namespace BvdR_Lib.Game.Scenarios.Moria
                 await gameController.ChangeState(new GroupDiscardState(
                     gameController,
                     [BaseActivityCard.ActivityCardType.Friendship, BaseActivityCard.ActivityCardType.Joker],
-                    engine => {
+                    (engine) => {
                         engine.MoveSauron(1);
                         return true;
                     }
@@ -86,11 +86,42 @@ namespace BvdR_Lib.Game.Scenarios.Moria
                 await gameController.ChangeState(new EachPlayerDiscardState(
                     gameController,
                     [BaseActivityCard.ActivityCardType.Hiding],
-                    engine => {
-                        
+                    (engine,player) => {
+                        player.RollDice();
                         return true;
                     }
                 ));
+            }
+        }
+        public class MoriaEvent_3 : IScenarioEvent
+        {
+            public async void Start(GameController gameController)
+            {
+                HobitCard card = gameController.DrawCard(1)[0];
+                await gameController.ChangeState(new SpecificPlayerDiscardState(
+                    gameController,
+                    [card.Symbols[0], card.Symbols[0]],
+                    engine =>
+                    {
+                        engine.MoveSauron(1);
+                        return true;
+                    },
+                    gameController.GetCurrentPlayer(),
+                    engine =>
+                    {
+                        //TODO Add boek
+                        engine.GetCurrentPlayer().CardsInHand.Add(/*boek*/ new HobitCard(Cards.BaseCard.CardColor.None, BaseActivityCard.ActivityCardType.Hiding));
+                        return true;
+                    }
+                ));
+                gameController.ActController.CurrentAct.Current.TriggerEvent(gameController);
+            }
+        }
+        public class MoriaEvent_4 : IScenarioEvent
+        {
+            public async void Start(GameController gameController)
+            {
+                if(gameController.ActController)
             }
         }
     }

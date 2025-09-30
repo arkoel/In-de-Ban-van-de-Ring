@@ -9,21 +9,27 @@ using System.Threading.Tasks;
 
 namespace BvdR_Lib.Game.Priority.EventPriority
 {
-    internal class ActivePlayerDiscardState : BaseDiscardState
+    internal class SpecificPlayerDiscardState : BaseDiscardState
     {
         private List<BaseActivityCard.ActivityCardType> toDiscard;
-        private GameController engine;
-        public ActivePlayerDiscardState(GameController _engine, List<BaseActivityCard.ActivityCardType> _toDiscard, Func<GameController, bool> consequence)
-            : base(_engine, consequence)
+        private Player player;
+        protected Func<GameController, bool> consequence;
+        protected Func<GameController, bool> reward;
+        
+        public SpecificPlayerDiscardState(GameController _engine, List<BaseActivityCard.ActivityCardType> _toDiscard, Func<GameController, bool> _consequence, Player _player)
+            : this(_engine, _toDiscard,_consequence,_player, (engine) => { return true; }) { }
+        
+        public SpecificPlayerDiscardState(GameController _engine, List<BaseActivityCard.ActivityCardType> _toDiscard, Func<GameController, bool> _consequence, Player _player, Func<GameController, bool> _reward)
+            : base(_engine)
         {
             toDiscard = _toDiscard;
-            engine = _engine;
+            consequence = _consequence;
+            player = _player;
+            reward = _reward;
         }
 
         public bool Discard(List<BaseActivityCard> cardsToDiscard)
         {
-
-            Player player = engine.GetCurrentPlayer();
             if (Discard()) return false;
             foreach (var card in cardsToDiscard)
             {
@@ -41,6 +47,15 @@ namespace BvdR_Lib.Game.Priority.EventPriority
             }
             if (toDiscard.Count > 0)
                 return false;
+            reward.Invoke(engine);
+            return true;
+        }
+        public bool Consequence()
+        {
+            if (ActionTaken)
+                return false;
+            ActionTaken = true;
+            consequence.Invoke(engine);
             return true;
         }
     }
