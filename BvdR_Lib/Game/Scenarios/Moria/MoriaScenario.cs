@@ -121,7 +121,7 @@ namespace BvdR_Lib.Game.Scenarios.Moria
         {
             public async void Start(GameController gameController)
             {
-                if(gameController.ActController)
+                if (gameController.ActController) { }
                     
             }
         }
