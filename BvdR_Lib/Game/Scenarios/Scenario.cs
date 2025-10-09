@@ -11,6 +11,7 @@ namespace BvdR_Lib.Game.Scenarios
         private LinkedList<IScenarioEvent> _scenarioEvents;
         public LinkedList<IScenarioEvent>.Enumerator CurrentEvent;
         public Dictionary<PathType, ScenarioPath> ScenarioPaths { get; set; }
+        public List<SpecificPathNames> CompletedPathNames { get; set; }
 
         public Scenario(List<IPrologue> prologues, LinkedList<IScenarioEvent> scenarioEvents, Dictionary<PathType, ScenarioPath> paths)
         {
@@ -18,6 +19,7 @@ namespace BvdR_Lib.Game.Scenarios
             _scenarioEvents = scenarioEvents;
             CurrentEvent = _scenarioEvents.GetEnumerator();
             ScenarioPaths = paths;
+            CompletedPathNames = new List<SpecificPathNames>();
         }
 
         public void TriggerEvent(GameController egine)
@@ -31,6 +33,14 @@ namespace BvdR_Lib.Game.Scenarios
             Hiding,
             Fighting,
             AnyPath
+        }
+        public enum SpecificPathNames
+        {
+            Friendship,
+            Traveling,
+            Hiding,
+            Traveling_FirstPath,
+            Traveling_SecondPath,
         }
 
     }
